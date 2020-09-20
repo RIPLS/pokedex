@@ -17,6 +17,7 @@ class ListElement extends StatelessWidget {
       elevation: 2,
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: ListTile(
+        onTap: detail,
         leading: CircleAvatar(
           backgroundColor: Colors.black,
           child: FittedBox(
@@ -30,14 +31,6 @@ class ListElement extends StatelessWidget {
         title: Text(
           capitalize(name),
           style: Theme.of(context).textTheme.headline2,
-        ),
-        trailing: IconButton(
-          tooltip: 'MORE INFO',
-          icon: Icon(
-            Icons.info_outline,
-            color: Colors.indigo[700],
-          ),
-          onPressed: detail,
         ),
       ),
     );

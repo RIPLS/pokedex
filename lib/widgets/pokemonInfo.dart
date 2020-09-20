@@ -17,6 +17,9 @@ class PokemonInfo extends StatelessWidget {
     List<PokeStat> _pokeStat = _pokeinfo.stats;
     List<PokeType> _pokeType = _pokeinfo.types;
 
+    String _weight = (_pokeinfo.weight / 10).toStringAsFixed(2);
+    String _height = (_pokeinfo.height / 10).toStringAsFixed(2);
+
     Widget _basicInfo(String name, String value) {
       return Container(
         margin: const EdgeInsets.symmetric(vertical: 2),
@@ -55,8 +58,10 @@ class PokemonInfo extends StatelessWidget {
               children: [
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
+                      margin: const EdgeInsets.only(left: 15, top: 15),
                       width: _size.width / 2.5,
                       child: _pokeinfo.sprites['front_default'] != null
                           ? Image.network(
@@ -102,8 +107,8 @@ class PokemonInfo extends StatelessWidget {
                               style: Theme.of(context).textTheme.headline6,
                             ),
                             _basicInfo('ID', _pokeinfo.id.toString()),
-                            _basicInfo('Weight', _pokeinfo.weight.toString()),
-                            _basicInfo('Height', _pokeinfo.height.toString()),
+                            _basicInfo('Weight', '$_weight kg'),
+                            _basicInfo('Height', '$_height m'),
                             _basicInfo('Type', ''),
                             Padding(
                               padding: const EdgeInsets.only(left: 25),
