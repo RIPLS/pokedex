@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/widgets/pokemonInfo.dart';
+import 'package:pokeapp/widgets/pokemonInfo.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/pokeProvider.dart';

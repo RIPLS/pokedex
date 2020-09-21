@@ -29,7 +29,6 @@ class DatabaseHelper {
   }
 
   void _onCreate(Database db, int version) async {
-    // When creating the db, create the table
     await db.execute(
         "CREATE TABLE UserSession(id INTEGER PRIMARY KEY, username TEXT, token TEXT)");
   }
@@ -50,13 +49,5 @@ class DatabaseHelper {
     var dbClient = await db;
     var res = await dbClient.query("UserSession");
     return res.length > 0 ? res[0]["token"] : null;
-  }
-
-  Future<UserSession> isLoggedInSession() async {
-    var dbClient = await db;
-    var res = await dbClient.query("UserSession");
-    return res.length > 0
-        ? new UserSession(res[0]["username"], res[0]["token"])
-        : null;
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/widgets/loginCard.dart';
-import 'package:pokedex/widgets/logo.dart';
+import 'package:pokeapp/widgets/loginCard.dart';
+import 'package:pokeapp/widgets/logo.dart';
 
 class LoginScreen extends StatelessWidget {
   final Function setAuth;

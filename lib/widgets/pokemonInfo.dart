@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/utils/typeColors.dart';
+import 'package:pokeapp/utils/typeColors.dart';
 
 import '../models/pokeType.dart';
 import '../models/pokeStats.dart';
