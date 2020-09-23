@@ -1,10 +1,37 @@
 import 'package:flutter/widgets.dart';
 
 import '../data/database_helper.dart';
-import '../data/auth.dart';
 import '../utils/UserSession.dart';
 
+enum AuthState { LOGGED_IN, LOGGED_OUT, LOADING }
+
 class AuthProvider with ChangeNotifier {
+  AuthState currentState = AuthState.LOADING;
+  String token;
+  DatabaseHelper db;
+
+  AuthProvider({DatabaseHelper dbHelper}) {
+    if (dbHelper != null) {
+      db = dbHelper;
+    } else {
+      db = new DatabaseHelper();
+    }
+    initState();
+  }
+
+  void initState() async {
+    var isLoggedIn = await db.isLoggedIn();
+    if (isLoggedIn != null) {
+      currentState = AuthState.LOGGED_IN;
+      token = isLoggedIn;
+      notifyListeners();
+    } else {
+      currentState = AuthState.LOGGED_OUT;
+      token = null;
+      notifyListeners();
+    }
+  }
+
   void login(String username, String password) async {
     onLoginSuccess(username, password);
   }
@@ -13,17 +40,15 @@ class AuthProvider with ChangeNotifier {
 
   void onLoginSuccess(String username, String password) async {
     UserSession user = new UserSession(username, password);
-    var db = new DatabaseHelper();
     await db.saveUser(user);
-    var authStateProvider = new AuthStateProvider();
-    AuthStateProvider.token = password;
-    authStateProvider.notify(AuthState.LOGGED_IN);
+    currentState = AuthState.LOGGED_IN;
+    notifyListeners();
   }
 
   Future<void> logout() async {
     var db = new DatabaseHelper();
     await db.deleteUsers();
-    var authStateProvider = new AuthStateProvider();
-    authStateProvider.notify(AuthState.LOGGED_OUT);
+    currentState = AuthState.LOGGED_OUT;
+    notifyListeners();
   }
 }

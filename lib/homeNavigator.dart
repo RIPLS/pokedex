@@ -6,7 +6,6 @@ import './Screens/pokemon.dart';
 import './Screens/welcome.dart';
 
 import './providers/authprovider.dart';
-import './data/auth.dart';
 import './utils/route.dart';
 
 import './widgets/modals/alertDialog.dart';
@@ -18,34 +17,19 @@ class HomeNavigatorPage extends StatefulWidget {
   _HomeNavigatorPageState createState() => _HomeNavigatorPageState();
 }
 
-class _HomeNavigatorPageState extends State<HomeNavigatorPage>
-    implements AuthStateListener {
+class _HomeNavigatorPageState extends State<HomeNavigatorPage> {
   String title;
   Widget screen;
   RoutePage route;
   Function _floatingFunction;
   Icon _floatingIcon;
 
-  AuthStateProvider _authStateProvider;
-  AuthState initAuth;
-
-  _HomeNavigatorPageState() {
-    _authStateProvider = new AuthStateProvider();
-  }
-
   @override
   void initState() {
     title = "PokeApp";
     route = RoutePage.Welcome;
     screen = WelcomePage(routeSelection: routeSelection);
-    _authStateProvider.subscribe(this);
     super.initState();
-  }
-
-  @override
-  void onAuthStateChanged(AuthState state) {
-    initAuth = state;
-    setState(() {});
   }
 
   Widget _screen(AuthState _state) {
@@ -103,11 +87,15 @@ class _HomeNavigatorPageState extends State<HomeNavigatorPage>
 
   @override
   Widget build(BuildContext context) {
+    var loginState = context.select<AuthProvider, AuthState>(
+      (auth) => auth.currentState,
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
       ),
-      body: _screen(initAuth),
+      body: _screen(loginState),
       floatingActionButton: route == RoutePage.Welcome
           ? null
           : FloatingActionButton(
@@ -117,12 +105,5 @@ class _HomeNavigatorPageState extends State<HomeNavigatorPage>
             ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
-  }
-
-  @protected
-  @mustCallSuper
-  void dispose() {
-    _authStateProvider.unsubscribe(this);
-    super.dispose();
   }
 }

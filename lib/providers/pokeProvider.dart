@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/widgets.dart';
 import 'package:pokeapp/models/pokemonList.dart';
 

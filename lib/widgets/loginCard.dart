@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'button.dart';
 
-import '../utils/route.dart';
-
 enum AuthMode { Signup, Login }
 
 class LoginCard extends StatefulWidget {

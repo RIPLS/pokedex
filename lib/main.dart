@@ -19,12 +19,8 @@ class PokeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(
-          value: AuthProvider(),
-        ),
-        ChangeNotifierProvider.value(
-          value: PokeProvider(),
-        ),
+        ChangeNotifierProvider<AuthProvider>(create: (_) => AuthProvider()),
+        ChangeNotifierProvider<PokeProvider>(create: (_) => PokeProvider()),
       ],
       child: MaterialApp(
         title: 'PokeApp',
