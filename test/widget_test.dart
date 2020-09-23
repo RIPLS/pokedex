@@ -1,30 +1,69 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:pokeapp/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Welcome Page to Login Routing test',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(PokeApp());
+
+    // await tester.tap(find.byIcon(Icons.exit_to_app));
+    // await tester.pump(Duration(seconds: 1));
+
+    expect(find.text('Login'), findsOneWidget);
+    expect(find.text('About Us'), findsOneWidget);
+
+    // Tap the Login button and trigger a frame.
+    await tester.tap(find.text('Login'));
+    await tester.pump(Duration(seconds: 1));
+
+    expect(find.text('User'), findsOneWidget);
+    expect(find.text('Password'), findsOneWidget);
+  });
+
+  testWidgets('Login Success Integration Test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(PokeApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    expect(find.text('Login'), findsOneWidget);
+    expect(find.text('About Us'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Tap the Login button and trigger a frame.
+    await tester.tap(find.text('Login'));
+    await tester.pump(Duration(seconds: 1));
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('User'), findsOneWidget);
+    expect(find.text('Password'), findsOneWidget);
+
+    await tester.enterText(find.byType(TextFormField).first, 'user');
+    await tester.enterText(find.byType(TextFormField).last, 'pass');
+
+    // Tap the Login button and trigger a frame.
+    await tester.tap(find.text('Login'));
+    await tester.pump(Duration(seconds: 1));
+
+    expect(find.text('Pokemon List'), findsOneWidget);
+  });
+
+  testWidgets('Login Pass Missing Integration Test',
+      (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(PokeApp());
+
+    // Tap the Login button and trigger a frame.
+    await tester.tap(find.text('Login'));
+    await tester.pump(Duration(seconds: 1));
+
+    expect(find.text('User'), findsOneWidget);
+    expect(find.text('Password'), findsOneWidget);
+
+    // Tap the Login button and trigger a frame.
+    await tester.tap(find.text('Login'));
+    await tester.pump(Duration(seconds: 1));
+
+    expect(find.text('Please enter User'), findsOneWidget);
+    expect(find.text('Please enter Password'), findsOneWidget);
+    expect(find.text('Pokemon List'), findsNothing);
   });
 }

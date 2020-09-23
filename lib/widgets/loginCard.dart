@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'button.dart';
 
+import '../utils/route.dart';
+
 enum AuthMode { Signup, Login }
 
 class LoginCard extends StatefulWidget {
@@ -94,11 +96,13 @@ class _LoginCardState extends State<LoginCard> {
                   onSaved: (val) => _username = val,
                   validator: (uservalue) {
                     if (uservalue.isEmpty) {
-                      return 'Plase enter User';
+                      return 'Please enter User';
                     }
                     return null;
                   },
                 ),
+
+                //Password input
                 TextFormField(
                   maxLines: 1,
                   controller: _passwordController,
@@ -139,12 +143,13 @@ class _LoginCardState extends State<LoginCard> {
                             ? false
                             : value.length < 5)) {
                       return _authMode == AuthMode.Login
-                          ? 'Plase enter Password'
+                          ? 'Please enter Password'
                           : 'Password is too short';
                     }
                     return null;
                   },
                 ),
+
                 _authMode == AuthMode.Login
                     ? Container()
                     : TextFormField(
@@ -181,6 +186,7 @@ class _LoginCardState extends State<LoginCard> {
                               }
                             : null,
                       ),
+                //Buttons
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

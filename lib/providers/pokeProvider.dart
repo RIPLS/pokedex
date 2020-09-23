@@ -1,19 +1,31 @@
+import 'dart:io';
+
 import 'package:flutter/widgets.dart';
+import 'package:pokeapp/models/pokemonList.dart';
 
 import '../utils/network_util.dart';
 
 import '../models/pokemonList.dart';
 import '../models/pokemon.dart';
+import 'package:http/http.dart' as http;
 
 class PokeProvider with ChangeNotifier {
-  NetworkUtil _netUtil = new NetworkUtil();
-  final url = 'https://pokeapi.co';
-  List<dynamic> pokelist;
+  NetworkUtil _netUtil;
+  final url = 'pokeapi.co';
+  List<PokeListModel> pokelist;
   int quantity;
   int page = 1;
   int totalpage;
   int listOffset = 20;
   PokeModel pokedata;
+
+  PokeProvider({NetworkUtil networkUtil}) {
+    if (networkUtil != null) {
+      _netUtil = networkUtil;
+    } else {
+      _netUtil = new NetworkUtil(new http.Client());
+    }
+  }
 
   Future<void> getAllPokemons() async {
     int limit = (page - 1) * listOffset;
