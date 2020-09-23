@@ -1,4 +1,3 @@
-//Paquetes
 import 'package:flutter/material.dart';
 
 class ConfirmModal extends StatelessWidget {
@@ -16,14 +15,12 @@ class ConfirmModal extends StatelessWidget {
           child: Text('Sure'),
           onPressed: () {
             function();
-            //Close Dialog
             Navigator.of(ctx).pop();
           },
         ),
         FlatButton(
           child: Text('Cancel'),
           onPressed: () {
-            //Close Dialong
             Navigator.of(ctx).pop();
           },
         )

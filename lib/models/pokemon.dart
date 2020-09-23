@@ -6,7 +6,7 @@ class PokeModel {
   String name;
   int height; //decimeters
   int weight; //hectogramos
-  dynamic sprites; //front_default
+  dynamic sprites;
   List<dynamic> types;
   List<dynamic> stats;
 

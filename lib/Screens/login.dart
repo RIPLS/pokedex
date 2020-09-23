@@ -4,7 +4,7 @@ import 'package:pokeapp/widgets/logo.dart';
 
 class LoginScreen extends StatelessWidget {
   final Function setAuth;
-  LoginScreen({Key key, this.setAuth}) : super(key: key);
+  LoginScreen({Key key, @required this.setAuth}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

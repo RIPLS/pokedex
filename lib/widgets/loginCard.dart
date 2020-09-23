@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'button.dart';
 
-import '../utils/route.dart';
-
 enum AuthMode { Signup, Login }
 
 class LoginCard extends StatefulWidget {
@@ -60,32 +58,12 @@ class _LoginCardState extends State<LoginCard> {
   Widget build(BuildContext context) {
     String _username, _password;
 
-    //Validar y salvar datos de ingreso
     Future<void> submitdata() async {
       if (!formKey.currentState.validate()) {
-        // Invalid!
         return;
       }
       formKey.currentState.save();
-      widget._setAuth(RoutePage.Pokemon);
-
-      // try {
-      //   if (_authMode == AuthMode.Login) {
-      //     ResponseDto loginResp =
-      //         await widget._setAuth(_username, _password, 'URL');
-      //     if (!loginResp.success) {
-      //       showToast(loginResp.message, loginResp.success);
-      //     }
-      //   } else {
-      //     //Aquí Funcion Sign UP
-      //   }
-      // } catch (error) {
-      //   //Error
-      //   showToast(error.toString(), false);
-      // }
-      // setState(() {
-      //   _loading = false;
-      // });
+      widget._setAuth(_username, _password);
     }
 
     return Card(
@@ -102,7 +80,6 @@ class _LoginCardState extends State<LoginCard> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                // Username Input
                 TextFormField(
                   maxLines: 1,
                   textInputAction: TextInputAction.next,
@@ -122,8 +99,6 @@ class _LoginCardState extends State<LoginCard> {
                     return null;
                   },
                 ),
-
-                //Password input
                 TextFormField(
                   maxLines: 1,
                   controller: _passwordController,
@@ -170,7 +145,6 @@ class _LoginCardState extends State<LoginCard> {
                     return null;
                   },
                 ),
-
                 _authMode == AuthMode.Login
                     ? Container()
                     : TextFormField(
@@ -198,7 +172,6 @@ class _LoginCardState extends State<LoginCard> {
                         onFieldSubmitted: (_) {
                           submitdata();
                         },
-                        // onSaved: (val) => _confirmPassword = val,
                         validator: _authMode == AuthMode.Signup
                             ? (value) {
                                 if (value != _passwordController.text) {
@@ -208,7 +181,6 @@ class _LoginCardState extends State<LoginCard> {
                               }
                             : null,
                       ),
-                //Buttons
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

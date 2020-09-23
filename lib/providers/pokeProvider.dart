@@ -7,7 +7,7 @@ import '../models/pokemon.dart';
 
 class PokeProvider with ChangeNotifier {
   NetworkUtil _netUtil = new NetworkUtil();
-  final url = 'https://pokeapi.co/api/v2/pokemon/';
+  final url = 'https://pokeapi.co';
   List<dynamic> pokelist;
   int quantity;
   int page = 1;
@@ -18,11 +18,12 @@ class PokeProvider with ChangeNotifier {
   Future<void> getAllPokemons() async {
     int limit = (page - 1) * listOffset;
     try {
-      final response = await _netUtil.get(url +
-          '?limit=' +
-          listOffset.toString() +
-          '&offset=' +
-          limit.toString());
+      var queryParameters = {
+        'limit': listOffset.toString(),
+        'offset': limit.toString(),
+      };
+      var uri = Uri.https(url, "/api/v2/pokemon/", queryParameters);
+      final response = await _netUtil.get(uri.toString());
       List<dynamic> respList = response["results"];
       quantity = response["count"];
       totalpage = (quantity / listOffset).ceil();

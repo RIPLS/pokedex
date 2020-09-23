@@ -1,16 +1,15 @@
 import '../data/database_helper.dart';
 
-enum AuthState { LOGGED_IN, LOGGED_OUT }
+enum AuthState { LOGGED_IN, LOGGED_OUT, LOADING }
 
 abstract class AuthStateListener {
   void onAuthStateChanged(AuthState state);
 }
 
-// A naive implementation of Observer/Subscriber Pattern. Will do for now.
 class AuthStateProvider {
   static final AuthStateProvider _instance = new AuthStateProvider.internal();
   static String token = "";
-  static AuthState currentState = AuthState.LOGGED_OUT;
+  static AuthState currentState = AuthState.LOADING;
 
   List<AuthStateListener> _subscribers;
   DatabaseHelper db;
@@ -29,13 +28,13 @@ class AuthStateProvider {
       currentState = AuthState.LOGGED_IN;
       notify(currentState);
       token = isLoggedIn;
-    } else
+    } else {
       currentState = AuthState.LOGGED_OUT;
-    notify(AuthState.LOGGED_OUT);
+      notify(AuthState.LOGGED_OUT);
+    }
   }
 
   Future<void> onTokenNotValid() async {
-    //setState(() => _isLoading = false);
     await db.deleteUsers();
     currentState = AuthState.LOGGED_OUT;
     notify(AuthState.LOGGED_OUT);
@@ -57,6 +56,7 @@ class AuthStateProvider {
   }
 
   void notify(AuthState state) {
+    _subscribers.forEach((element) {});
     _subscribers.forEach((AuthStateListener s) => s.onAuthStateChanged(state));
   }
 

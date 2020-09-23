@@ -1,0 +1,104 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter --quiet assemble --depfile D:\PROYECTOS EN CURSO\Flutter\Pokemon\pokedex\build\app\intermediates\flutter\debug/flutter_build.d --output D:\PROYECTOS EN CURSO\Flutter\Pokemon\pokedex\build\app\intermediates\flutter\debug -dTargetFile=D:\PROYECTOS EN CURSO\Flutter\Pokemon\pokedex\lib\main.dart -dTargetPlatform=android -dBuildMode=debug -dTrackWidgetCreation=true --DartDefines=flutter.inspector.structuredErrors%3Dtrue debug_android_application
+
+## exception
+
+FileSystemException: FileSystemException: Exists failed, path = 'D:\PROYECTOS EN CURSO\Flutter\Pokemon\pokedex\.dart_tool\flutter_build\0e2cf77816cd5e0acebaf52622189bbd' (OS Error: Access is denied.
+, errno = 5)
+
+```
+#0      _Directory.existsSync (dart:io/directory_impl.dart:94:7)
+#1      _Directory.createSync (dart:io/directory_impl.dart:126:11)
+#2      ForwardingDirectory.createSync (package:file/src/forwarding/forwarding_directory.dart:22:16)
+#3      FlutterBuildSystem.build (package:flutter_tools/src/build_system/build_system.dart:536:26)
+#4      AssembleCommand.runCommand (package:flutter_tools/src/commands/assemble.dart:221:58)
+#5      FlutterCommand.verifyThenRunCommand (package:flutter_tools/src/runner/flutter_command.dart:860:18)
+<asynchronous suspension>
+#6      FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:741:33)
+<asynchronous suspension>
+#7      FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart)
+#8      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:150:29)
+#9      _rootRun (dart:async/zone.dart:1190:13)
+#10     _CustomZone.run (dart:async/zone.dart:1093:19)
+#11     _runZoned (dart:async/zone.dart:1630:10)
+#12     runZoned (dart:async/zone.dart:1550:10)
+#13     AppContext.run (package:flutter_tools/src/base/context.dart:149:18)
+#14     FlutterCommand.run (package:flutter_tools/src/runner/flutter_command.dart:730:20)
+#15     CommandRunner.runCommand (package:args/command_runner.dart:197:27)
+#16     FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:332:21)
+<asynchronous suspension>
+#17     FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart)
+#18     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:150:29)
+#19     _rootRun (dart:async/zone.dart:1190:13)
+#20     _CustomZone.run (dart:async/zone.dart:1093:19)
+#21     _runZoned (dart:async/zone.dart:1630:10)
+#22     runZoned (dart:async/zone.dart:1550:10)
+#23     AppContext.run (package:flutter_tools/src/base/context.dart:149:18)
+#24     FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:282:19)
+<asynchronous suspension>
+#25     CommandRunner.run.<anonymous closure> (package:args/command_runner.dart:112:25)
+#26     new Future.sync (dart:async/future.dart:223:31)
+#27     CommandRunner.run (package:args/command_runner.dart:112:14)
+#28     FlutterCommandRunner.run (package:flutter_tools/src/runner/flutter_command_runner.dart:231:18)
+#29     run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:69:22)
+#30     _rootRun (dart:async/zone.dart:1190:13)
+#31     _CustomZone.run (dart:async/zone.dart:1093:19)
+#32     _runZoned (dart:async/zone.dart:1630:10)
+#33     runZonedGuarded (dart:async/zone.dart:1618:12)
+#34     runZoned (dart:async/zone.dart:1547:12)
+#35     run.<anonymous closure> (package:flutter_tools/runner.dart:67:18)
+<asynchronous suspension>
+#36     run.<anonymous closure> (package:flutter_tools/runner.dart)
+#37     runInContext.runnerWrapper (package:flutter_tools/src/context_runner.dart:62:18)
+<asynchronous suspension>
+#38     runInContext.runnerWrapper (package:flutter_tools/src/context_runner.dart)
+#39     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:150:29)
+#40     _rootRun (dart:async/zone.dart:1190:13)
+#41     _CustomZone.run (dart:async/zone.dart:1093:19)
+#42     _runZoned (dart:async/zone.dart:1630:10)
+#43     runZoned (dart:async/zone.dart:1550:10)
+#44     AppContext.run (package:flutter_tools/src/base/context.dart:149:18)
+#45     runInContext (package:flutter_tools/src/context_runner.dart:65:24)
+#46     run (package:flutter_tools/runner.dart:52:10)
+#47     main (package:flutter_tools/executable.dart:73:9)
+#48     main (file:///D:/Android/flutter/packages/flutter_tools/bin/flutter_tools.dart:8:3)
+#49     _startIsolate.<anonymous closure> (dart:isolate-patch/isolate_patch.dart:299:32)
+#50     _RawReceivePortImpl._handleMessage (dart:isolate-patch/isolate_patch.dart:168:12)
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel stable, 1.20.4, on Microsoft Windows [Version 10.0.18362.778], locale es-419)
+    • Flutter version 1.20.4 at D:\Android\flutter
+    • Framework revision fba99f6cf9 (7 days ago), 2020-09-14 15:32:52 -0700
+    • Engine revision d1bc06f032
+    • Dart version 2.9.2
+
+[✓] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
+    • Android SDK at D:\Android\sdk
+    • Platform android-30, build-tools 30.0.2
+    • ANDROID_HOME = D:\Android
+    • Java binary at: D:\Android\Android Studio\jre\bin\java
+    • Java version OpenJDK Runtime Environment (build 1.8.0_242-release-1644-b01)
+    • All Android licenses accepted.
+
+[✓] Android Studio (version 4.0)
+    • Android Studio at D:\Android\Android Studio
+    • Flutter plugin version 48.1.2
+    • Dart plugin version 193.7547
+    • Java version OpenJDK Runtime Environment (build 1.8.0_242-release-1644-b01)
+
+[✓] VS Code (version 1.49.1)
+    • VS Code at C:\Users\LuisS\AppData\Local\Programs\Microsoft VS Code
+    • Flutter extension version 3.14.1
+
+[✓] Connected device (1 available)
+    • Android SDK built for x86 (mobile) • emulator-5554 • android-x86 • Android 8.1.0 (API 27) (emulator)
+
+• No issues found!
+```
