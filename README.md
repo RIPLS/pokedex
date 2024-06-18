@@ -1,6 +1,6 @@
 # Pokeapp
 
-This is a Flutter project assigment, developed by `Luis Suarez` whose main funtion is to show pokemons charactheristics. The data shown is requested from pokeapi.co
+This is a demo Flutter project, developed by `Luis Suarez` whose main funtion is to show pokemons charactheristics. The data shown is requested from pokeapi.co
 
 ## Getting Started
 
